@@ -21,6 +21,7 @@ set(
     chewing_large_table.cpp
     chewing_large_table2.cpp
     table_info.cpp
+    my_load_phrase.cpp
 )
 
 if (HAVE_BERKELEY_DB)

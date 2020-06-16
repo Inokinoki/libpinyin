@@ -19,6 +19,7 @@
  */
 
 #include "phrase_large_table3.h"
+#include "my_load_phrase.h"
 
 namespace pinyin{
 
@@ -128,8 +129,15 @@ bool PhraseLargeTable3::load_text(FILE * infile){
     size_t freq;
 
     while (!feof(infile)) {
-        int num = fscanf(infile, "%255s %255s %u %ld",
-                         pinyin, phrase, &token, &freq);
+        int num = fscanf(infile, "%255s ", pinyin);
+        
+        if (1 != num)
+            continue;
+
+        my_load_phrase(infile, phrase);
+        num += 1;
+
+        num += fscanf(infile, "%u %ld", &token, &freq);
 
         if (4 != num)
             continue;
