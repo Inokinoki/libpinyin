@@ -53,7 +53,7 @@ add_library(
 target_link_libraries(
     storage
     ${GLIB2_LIBRARIES}
-    ${BERKELEY_DB_LIBRARIES}
+    ${DB_LIBRARIES}
 )
 
 install(
