@@ -20,6 +20,7 @@
 
 #include "phrase_index.h"
 #include "pinyin_custom2.h"
+#include "my_load_phrase.h"
 
 namespace pinyin{
 
@@ -527,8 +528,15 @@ bool FacadePhraseIndex::load_text(guint8 phrase_index, FILE * infile,
     phrase_token_t cur_token = 0;
 
     while (!feof(infile)){
-        int num = fscanf(infile, "%255s %255s %u %ld",
-                         pinyin, phrase, &token, &freq);
+        int num = fscanf(infile, "%255s ", pinyin);
+        
+        if (1 != num)
+            continue;
+
+        my_load_phrase(infile, phrase);
+        num += 1;
+
+        num += fscanf(infile, "%u %ld", &token, &freq);
 
         if (4 != num)
             continue;

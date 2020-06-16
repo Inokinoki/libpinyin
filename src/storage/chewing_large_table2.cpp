@@ -21,6 +21,7 @@
 #include "chewing_large_table2.h"
 #include "pinyin_parser2.h"
 #include "zhuyin_parser2.h"
+#include "my_load_phrase.h"
 
 void ChewingLargeTable2::init_entries() {
     assert(NULL == m_entries);
@@ -115,8 +116,15 @@ bool ChewingLargeTable2::load_text(FILE * infile, TABLE_PHONETIC_TYPE type) {
     size_t freq;
 
     while (!feof(infile)) {
-        int num = fscanf(infile, "%255s %255s %u %ld",
-                         pinyin, phrase, &token, &freq);
+        int num = fscanf(infile, "%255s ", pinyin);
+
+        if (1 != num)
+            continue;
+
+        my_load_phrase(infile, phrase);
+        num += 1;
+
+        num += fscanf(infile, "%u %ld", &token, &freq);
 
         if (4 != num)
             continue;
