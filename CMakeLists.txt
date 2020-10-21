@@ -24,7 +24,7 @@ enable_testing()
 set (PACKAGE_URL https://github.com/libpinyin/libpinyin)
 set (PACKAGE_BUGREPORT https://github.com/libpinyin/libpinyin/issues)
 set (LIBPINYIN_VERSION_MAJOR 2)
-set (LIBPINYIN_VERSION_MINOR 1)
+set (LIBPINYIN_VERSION_MINOR 3)
 set (LIBPINYIN_VERSION_REVISION 0)
 set (LIBPINYIN_BINARY_VERSION 13.0)
 
