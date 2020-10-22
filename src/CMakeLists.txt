@@ -26,7 +26,7 @@ set_target_properties(
         OUTPUT_NAME
             pinyin
         VERSION
-            13.0.0
+            ${LIBPINYIN_BINARY_VERSION}
         SOVERSION
             13
 )
